@@ -7,16 +7,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Chef {
 @Id
 @GeneratedValue(strategy =GenerationType.IDENTITY)
 private int id;
+@NotBlank
 private String nom;
 @OneToOne(cascade =CascadeType.ALL)
 @JoinColumn(name = "departement", referencedColumnName = "titre")
 private Departement departement;
+@OneToOne(mappedBy = "chef")
+Projet projet;
+
 public int getId() {
 	return id;
 }
